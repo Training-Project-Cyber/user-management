@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, ValidationPipe } from '@nestjs/common';
 import { AppService } from './app.service';
+import { EventPattern, Payload } from '@nestjs/microservices';
+import { CreateUserDto } from './user/dto/createUserDTO';
 
 @Controller()
 export class AppController {
@@ -8,5 +10,10 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @EventPattern('create_user')
+  handleUserCreate(@Payload(ValidationPipe) data: CreateUserDto) {
+    this.appService.createUser(data);
   }
 }
