@@ -1,12 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { UsersRepository } from './repository/users.repostitory';
-import { CreateUserDto } from './user/dto/createUserDTO';
-import { User } from './entities/user.entity';
 
 @Injectable()
 export class AppService {
-  // constructor(private readonly usersRepository: UsersRepository) {}
-
   getHello(): string {
     console.log(
       'Hello World!: ',
@@ -19,12 +14,4 @@ export class AppService {
     );
     return 'Hello World!';
   }
-
-  createUser(data: CreateUserDto): void {
-    console.log('Có chạy nha: ', data);
-  }
-
-  // getUser(id: number): User {
-  //   return this.usersRepository.findOne(id);
-  // }
 }
